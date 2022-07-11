@@ -1,0 +1,5 @@
+classes = 1
+train = data/train.txt
+valid = data/test.txt
+names = D:/UNIVERSITA/Magistrale/SecondoAnno/VisualInformationProcessingAndManagement/ProgettoVISUAL/yolov4/darknet/data/obj.names
+backup = ../training

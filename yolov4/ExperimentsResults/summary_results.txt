@@ -1,0 +1,232 @@
+
+
+    ╔════════════════════════════════════════════════════════════════════╗
+    ║                                                                    ║
+    ║   SUMMARY of results for experiments with yolov4 and yolov4-tiny   ║
+    ║                                                                    ║
+    ╚════════════════════════════════════════════════════════════════════╝
+
+
+⚠Note: when referred to training process, the "test set" is meant as "validation set".
+
+
+
+----------------------------------   YOLOV4   ----------------------------------
+
+
+✅ "exp-1-corrected_dataset-no_yolo_augm": 
+
+	Training time ≈ 10h 
+	Train: 70% - Test: 30% taken from "original_dataset"
+	Config file: yolov4-custom-no_augm.cfg
+	for conf_thresh = 0.25, precision = 0.71, recall = 0.59, F1-score = 0.64
+ 	for conf_thresh = 0.25, TP = 360, FP = 144, FN = 255, average IoU = 56.45 %
+ 	IoU threshold = 50 %, used Area-Under-Curve for each unique Recall
+ 	mean average precision (mAP@0.50) = 0.592606, or 59.26 %
+ 	
+
+✅ "exp-1-corrected_dataset-with_yolo_augm":
+	
+	Training time ≈ 11h
+	Train: 70% + augmentation (no crop) - Test: 30% taken from "original_dataset"
+    Config file: yolov4-custom.cfg
+    for conf_thresh = 0.25, precision = 0.81, recall = 0.68, F1-score = 0.74
+ 	for conf_thresh = 0.25, TP = 416, FP = 100, FN = 199, average IoU = 62.10 %
+ 	IoU threshold = 50 %, used Area-Under-Curve for each unique Recall
+ 	mean average precision (mAP@0.50) = 0.717952, or 71.80 %
+
+
+✅ "exp-1-corrected_augmented_dataset-no_yolo_augm":
+
+	Training time ≈ 14h
+	Train: 70% + augmentation (no crop) - Test: 30% taken from "original_dataset"
+	Config file: yolov4-custom-no_augm.cfg
+	for conf_thresh = 0.25, precision = 0.67, recall = 0.65, F1-score = 0.66
+ 	for conf_thresh = 0.25, TP = 399, FP = 195, FN = 216, average IoU = 51.23 %
+ 	IoU threshold = 50 %, used Area-Under-Curve for each unique Recall
+ 	mean average precision (mAP@0.50) = 0.663134, or 66.31 %
+
+
+✅ "exp-1-corrected_augmented_dataset-with_yolo_augm":
+
+	Training time ≈ 14h
+	Train: 70% + augmentation (no crop) - Test: 30% taken from "original_dataset"
+	Config file: yolov4-custom.cfg
+	for conf_thresh = 0.25, precision = 0.69, recall = 0.74, F1-score = 0.71
+ 	for conf_thresh = 0.25, TP = 453, FP = 208, FN = 162, average IoU = 53.33 %
+ 	IoU threshold = 50 %, used Area-Under-Curve for each unique Recall
+ 	mean average precision (mAP@0.50) = 0.741264, or 74.13 %
+
+
+✅ "exp-1-original_dataset-no_yolo_augm":
+
+	Training time ≈ 12h 
+	Train: 70% - Test: 30% taken from "original_dataset"
+ 	Config file: yolov4-custom-no_augm.cfg
+ 	for conf_thresh = 0.25, precision = 0.77, recall = 0.58, F1-score = 0.66
+ 	for conf_thresh = 0.25, TP = 365, FP = 110, FN = 264, average IoU = 57.22 %
+ 	IoU threshold = 50 %, used Area-Under-Curve for each unique Recall
+ 	mean average precision (mAP@0.50) = 0.653941, or 65.39 %
+
+
+✅ "exp-1-original_dataset-with_yolo_augm": 🥇
+
+	Training time ≈ 12h 
+	Train: 70% - Test: 30% taken from "original_dataset"
+ 	Config file: yolov4-custom.cfg
+ 	for conf_thresh = 0.25, precision = 0.75, recall = 0.72, F1-score = 0.73
+ 	for conf_thresh = 0.25, TP = 450, FP = 147, FN = 179, average IoU = 58.93 %
+ 	IoU threshold = 50 %, used Area-Under-Curve for each unique Recall
+ 	mean average precision (mAP@0.50) = 0.749718, or 74.97 %
+
+ 	📸 Risultati su dati nuovi:
+ 	for conf_thresh = 0.25, precision = 0.75, recall = 0.70, F1-score = 0.72
+ 	for conf_thresh = 0.25, TP = 313, FP = 104, FN = 135, average IoU = 58.14 %
+ 	IoU threshold = 50 %, used Area-Under-Curve for each unique Recall
+ 	mean average precision (mAP@0.50) = 0.730619, or 73.06 %
+
+
+✅ "exp-1-augmented_og_dataset-no_yolo_augm":
+
+	Training time ≈ 15h
+	Train: 70% + augmentation (no crop) - Test: 30% taken from "original_dataset"
+	Config file: yolov4-custom-no_augm.cfg
+	for conf_thresh = 0.25, precision = 0.78, recall = 0.61, F1-score = 0.68
+ 	for conf_thresh = 0.25, TP = 374, FP = 105, FN = 241, average IoU = 58.74 %
+ 	IoU threshold = 50 %, used Area-Under-Curve for each unique Recall
+ 	mean average precision (mAP@0.50) = 0.680873, or 68.09 %
+
+
+✅ "exp-1-augmented_og_dataset-with_yolo_augm":
+
+	Training time ≈ 16h
+	Train: 70% + augmentation (no crop) - Test: 30% taken from "original_dataset"
+	Config file: yolov4-custom.cfg
+	for conf_thresh = 0.25, precision = 0.73, recall = 0.72, F1-score = 0.72
+ 	for conf_thresh = 0.25, TP = 440, FP = 161, FN = 175, average IoU = 55.55 %
+ 	IoU threshold = 50 %, used Area-Under-Curve for each unique Recall
+ 	mean average precision (mAP@0.50) = 0.748959, or 74.90 %
+
+
+
+✅ Try to train from scratch the one that gave the best results:
+
+	Too expensive in terms of time, plus, PC overheating would be pretty severe
+	given the temperatures of these days in north Italy (33°-35° C).
+
+
+
+--------------------------------   YOLOV4 TINY   -------------------------------
+
+
+✅ "exp-1-corrected_dataset-no_yolo_augm": 
+
+	Training time ≈ 4h 
+	Train: 70% - Test: 30% taken from "original_dataset"
+	Config file: yolov4-tiny-custom-no_augm.cfg
+	for conf_thresh = 0.25, precision = 0.75, recall = 0.65, F1-score = 0.70
+ 	for conf_thresh = 0.25, TP = 402, FP = 131, FN = 213, average IoU = 58.00 %
+ 	IoU threshold = 50 %, used Area-Under-Curve for each unique Recall
+ 	mean average precision (mAP@0.50) = 0.677189, or 67.72 %
+ 	
+
+✅ "exp-1-corrected_dataset-with_yolo_augm":
+	
+	Training time ≈ 4h
+	Train: 70% + augmentation (no crop) - Test: 30% taken from "original_dataset"
+    Config file: yolov4-tiny-custom.cfg
+    for conf_thresh = 0.25, precision = 0.75, recall = 0.63, F1-score = 0.69
+ 	for conf_thresh = 0.25, TP = 388, FP = 128, FN = 227, average IoU = 57.02 %
+ 	IoU threshold = 50 %, used Area-Under-Curve for each unique Recall
+ 	mean average precision (mAP@0.50) = 0.679023, or 67.90 %
+
+
+✅ "exp-1-corrected_augmented_dataset-no_yolo_augm":
+
+	Training time ≈ 4h
+	Train: 70% + augmentation (no crop) - Test: 30% taken from "original_dataset"
+	Config file: yolov4-tiny-custom-no_augm.cfg
+	for conf_thresh = 0.25, precision = 0.73, recall = 0.63, F1-score = 0.68
+ 	for conf_thresh = 0.25, TP = 396, FP = 147, FN = 233, average IoU = 55.13 %
+ 	IoU threshold = 50 %, used Area-Under-Curve for each unique Recall
+ 	mean average precision (mAP@0.50) = 0.681676, or 68.17 %
+
+
+✅ "exp-1-corrected_augmented_dataset-with_yolo_augm":
+
+	Training time ≈ 4h
+	Train: 70% + augmentation (no crop) - Test: 30% taken from "original_dataset"
+	Config file: yolov4-tiny-custom.cfg
+	for conf_thresh = 0.25, precision = 0.71, recall = 0.64, F1-score = 0.67
+ 	for conf_thresh = 0.25, TP = 405, FP = 169, FN = 224, average IoU = 53.58 %
+ 	IoU threshold = 50 %, used Area-Under-Curve for each unique Recall
+ 	mean average precision (mAP@0.50) = 0.683719, or 68.37 %
+
+
+✅ "exp-1-original_dataset-no_yolo_augm":
+
+	Training time ≈ 4h 
+	Train: 70% - Test: 30% taken from "original_dataset"
+ 	Config file: yolov4-tiny-custom-no_augm.cfg
+ 	for conf_thresh = 0.25, precision = 0.75, recall = 0.66, F1-score = 0.70
+ 	for conf_thresh = 0.25, TP = 417, FP = 142, FN = 212, average IoU = 57.02 %
+ 	IoU threshold = 50 %, used Area-Under-Curve for each unique Recall
+ 	mean average precision (mAP@0.50) = 0.719000, or 71.90 %
+
+
+✅ "exp-1-original_dataset-with_yolo_augm":
+
+	Training time ≈ 4h 
+	Train: 70% - Test: 30% taken from "original_dataset"
+ 	Config file: yolov4-tiny-custom.cfg
+ 	for conf_thresh = 0.25, precision = 0.67, recall = 0.71, F1-score = 0.69
+ 	for conf_thresh = 0.25, TP = 444, FP = 222, FN = 185, average IoU = 50.16 %
+ 	IoU threshold = 50 %, used Area-Under-Curve for each unique Recall
+ 	mean average precision (mAP@0.50) = 0.726126, or 72.61 %
+
+
+✅ "exp-1-augmented_og_dataset-no_yolo_augm": 🥇
+
+	Training time ≈ 4h
+	Train: 70% + augmentation (no crop) - Test: 30% taken from "original_dataset"
+	Config file: yolov4-tiny-custom-no_augm.cfg
+	for conf_thresh = 0.25, precision = 0.73, recall = 0.71, F1-score = 0.72
+ 	for conf_thresh = 0.25, TP = 447, FP = 167, FN = 182, average IoU = 56.50 %
+ 	IoU threshold = 50 %, used Area-Under-Curve for each unique Recall
+ 	mean average precision (mAP@0.50) = 0.722946, or 72.29 %
+
+ 	📸 Risultati su dati nuovi:
+ 	for conf_thresh = 0.25, precision = 0.41, recall = 0.67, F1-score = 0.51
+ 	for conf_thresh = 0.25, TP = 301, FP = 426, FN = 147, average IoU = 31.26 %
+ 	IoU threshold = 50 %, used Area-Under-Curve for each unique Recall
+ 	mean average precision (mAP@0.50) = 0.528588, or 52.86 %
+
+
+✅ "exp-1-augmented_og_dataset-with_yolo_augm": 
+
+	Training time ≈ 4h
+	Train: 70% + augmentation (no crop) - Test: 30% taken from "original_dataset"
+	Config file: yolov4-tiny-custom.cfg
+	for conf_thresh = 0.25, precision = 0.71, recall = 0.70, F1-score = 0.71
+ 	for conf_thresh = 0.25, TP = 443, FP = 181, FN = 186, average IoU = 55.24 %
+ 	IoU threshold = 50 %, used Area-Under-Curve for each unique Recall
+ 	mean average precision (mAP@0.50) = 0.722272, or 72.23 %
+
+
+✅ Try to train from scratch the one that gave the best results:
+	
+	Model resulted from "exp-1-augmented_og_dataset-no_yolo_augm"
+	Training time ≈ 8h
+	Train: Train: 70% + augmentation (no crop) - Test: 30% taken from "original_dataset"
+	Config file: yolov4-tiny-custom-no_augm.cfg (600 epochs)
+				 yolov4-tiny-custom-no_augm-from_scratch.cfg (12000 epochs)
+	After 6000 epochs:
+		for conf_thresh = 0.25, precision = 0.71, recall = 0.60, F1-score = 0.65
+	 	for conf_thresh = 0.25, TP = 376, FP = 156, FN = 253, average IoU = 54.06 %
+	 	IoU threshold = 50 %, used Area-Under-Curve for each unique Recall
+	 	mean average precision (mAP@0.50) = 0.656546, or 65.65 %
+	After 12000 epochs:
+		for conf_thresh = 0.25, precision = 0.66, recall = 0.64, F1-score = 0.65
+ 		for conf_thresh = 0.25, TP = 400, FP = 203, FN = 229, average IoU = 49.59 %
+ 		IoU threshold = 50 %, used Area-Under-Curve for each unique Recall
+ 		mean average precision (mAP@0.50) = 0.684840, or 68.48 %
