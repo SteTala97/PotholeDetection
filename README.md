@@ -3,7 +3,7 @@ Project for the course "Visual Information Processing and Management" at Univers
 
 The datasets, the PowerPoint presentation and the best models' weights are available [here](https://drive.google.com/drive/folders/1talxVG6_OqUvEruzMEVPVOZjB-IV4XKj?usp=sharing).
 
-Main pipeline
+Main pipeline: <br>
 ![](https://github.com/SteTala97/PotholeDetection/blob/main/demo_data/main-pipeline.png)
 
 Some results on images: <br>
