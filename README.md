@@ -1,4 +1,11 @@
 # PotholeDetection
 Project for the course "Visual Information Processing and Management" at University of Milan Bicocca (a.a. 2021/2022)
 
-![main-pipeline-sfondo](https://user-images.githubusercontent.com/82440452/178280469-a36b4a11-9ddd-4d0e-9196-12909b46236c.png)
+Main pipeline
+![](https://github.com/SteTala97/PotholeDetection/blob/main/demo_data/main-pipeline.png)
+
+Some results on images: <br>
+![](https://github.com/SteTala97/PotholeDetection/blob/main/demo_data/images-result-collage.png)
+
+Some results on videos: <br>
+![](https://github.com/SteTala97/PotholeDetection/blob/main/demo_data/video-5-result.gif)
