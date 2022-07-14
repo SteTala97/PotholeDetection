@@ -1,3 +1,5 @@
+# WARNING: The following is the README of the official [Darknet repository](https://github.com/AlexeyAB/darknet), I DID NOT WRITE THIS, NEITHER I IMPLEMENTED ANY CHANGE OF ANY KIND TO THE ORIGINAL FRAMEWORK. Also, in the original (local) version of this project, this directory named "darknet" contains the build folder in which I built the framework, so this of course is not present here on GitHub.
+
 # Yolo v4, v3 and v2 for Windows and Linux
 
 ## (neural networks for object detection)
