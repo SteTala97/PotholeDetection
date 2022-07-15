@@ -5,7 +5,7 @@ The dataset used as training set is [Annotated Potholes Image Dataset](https://w
 
 The detection task is carried out with [YOLOv4](https://github.com/AlexeyAB/darknet/tree/yolov4) and [YOLOv4-tiny](https://github.com/AlexeyAB/darknet/tree/yolov4), implemented in the [Darknet framework](https://github.com/AlexeyAB/darknet).
 
-The datasets, the PowerPoint presentation and the best models' weights are available [here](https://drive.google.com/drive/folders/1talxVG6_OqUvEruzMEVPVOZjB-IV4XKj?usp=sharing).
+The datasets, the PowerPoint presentation and the best models' weights are available [here](https://drive.google.com/drive/folders/1talxVG6_OqUvEruzMEVPVOZjB-IV4XKj?usp=sharing) (unfortunately, the presentation is only avilable in italian).
 
 Main pipeline: <br>
 ![](https://github.com/SteTala97/PotholeDetection/blob/main/demo_data/main-pipeline.png)
