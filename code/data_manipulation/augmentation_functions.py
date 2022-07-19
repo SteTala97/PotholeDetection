@@ -5,12 +5,10 @@ Created on Sat Mar 12 15:47:06 2022
 """
 
 
-
 import xml.etree.ElementTree as ET
 import sys
 import cv2 as cv
 import numpy as np
-
 
 
 
@@ -245,154 +243,6 @@ def rotate(img, bbox_pts, angle):
 
 
 
-
-# scale : valore in [0, 1]; porzione delle dimensioni dall'immagine originale che
-#         vanno rimosse; dal momento che non conviene fare scaling inferiore a 1,
-#         visto che alcune immagini contengono buche che sono già molto piccole,
-#         il valore di scaling viene sommato a 1, quindi lo scaling effettivo è
-#         in [1, 2], dove scale = 0 in input significa scale di 1 + 0 = 1, ovvero
-#         l'immagine rimane invariata, mentre scale = 1 in input significa scale
-#         1 + 1 = 2 quindi l'immagine viene "croppata" per il 50% delle sue 
-#         dimensioni originali;
-# direction : valore in ["ne", "nw", "se", "sw"]; rispecchia la direzione verso cui
-#             l'immagine viene "croppata", ovvero: "ne" = "north-east" = "in alto
-#             a destra", "sw" = "south-west" = "in basso a sinistra", ecc...
-def crop(img, bbox_pts, cropping_factor, direction):
-    
-    if len(bbox_pts) == 0:  
-        sys.exit("The bounding box points are invalid for function \"crop\"!")
-        
-    scale = 1 + cropping_factor
-    
-    # Scaling dell'immagine
-    r, c, ch = img.shape
-    img = cv.resize(img, None, fx = scale, fy = scale, interpolation = cv.INTER_CUBIC)
-    
-    # Scaling delle bbox
-    n_bboxes = len(bbox_pts) // 4
-    bboxes = np.zeros((n_bboxes, 4), dtype = int)
-    for i in range(n_bboxes):
-        bboxes[i, :] = bbox_pts[i * 4 : i * 4 + 4]
-        bboxes[i, :] = bboxes[i, :] * [scale, scale, scale, scale] # probably same as: * scale
-   
-        
-    # Tieni solo la porzione di immagine che si vuole tagliare
-    new_img = np.zeros((r, c, ch), dtype = np.uint8)
-    r_lim = int(scale * r)
-    c_lim = int(scale * c)
-    
-    if direction == "nw": # cropping in direzione nord-ovest
-        new_img =  img[:r, :c, :]
-        clip_box = [0, 0, c, r]
-        
-    elif direction == "sw": # cropping in direzione sud-ovest
-        new_img =  img[r_lim - r :, :c, :]
-        clip_box = [0, r_lim - r, c, r_lim]
-        
-    elif direction == "ne": # cropping in direzione nord-est
-        new_img =  img[:r, c_lim - c :, :]
-        clip_box = [c_lim - c, 0, c_lim + c, r]
-        
-    elif direction == "se": # cropping in direzione sud-est
-        new_img =  img[r_lim - r :, c_lim - c :, :]
-        clip_box = [c_lim - c, r_lim - r, c_lim, r_lim]
-        
-    else:
-        print("\nERROR - The specified direction is invalid!")
-        sys.exit(0)
-    
-    
-    img = new_img
-    bboxes = clip_bbox(bboxes, clip_box, 0.33)
-    bboxes = np.reshape(bboxes, (1, -1))
-    bboxes = bboxes[0, :].tolist()
-    # Se la direzione è diversa da "nord-ovest", allora bisogna traslare i vertici
-    # delle bounding box, che altrimenti non sarebbero allineate con gli oggetti
-    if direction != "nw" : bboxes = translate_bbox(bboxes, direction, cropping_factor, r, c)
-    
-    return img, bboxes
-
-
-
-
-def bbox_area(bbox):
-    return (bbox[2] - bbox[0] + 1) * (bbox[3] - bbox[1] + 1)
-
-
-
-
-# alpha : valore in [0, 1]; se la frazione di bbox nell'immagine risultante è 
-#         inferiore ad alpha allora rimuovi tale bbox
-def clip_bbox(bboxes, clip_box, alpha):
-    
-    i = 0
-    dropped_count = 0 # per tenere il conto di quante bbox vengono scartate
-    while i < np.shape(bboxes)[0] - dropped_count:
-        bbox = bboxes[i, :]
-        area = (bbox_area(bbox))
-        
-        x_min = np.maximum(bbox[0], clip_box[0]).reshape(-1, 1)
-        y_min = np.maximum(bbox[1], clip_box[1]).reshape(-1, 1)
-        x_max = np.minimum(bbox[2], clip_box[2]).reshape(-1, 1)
-        y_max = np.minimum(bbox[3], clip_box[3]).reshape(-1, 1)
-        
-        bbox = np.hstack((x_min, y_min, x_max, y_max))
-        bbox = bbox[0, :]
-        
-        delta_area = ((area - bbox_area(bbox)) / area)
-        mask = (delta_area < (1 - alpha)).astype(int)
-        bbox = bbox[mask == 1, :]
-        
-        # Se la bbox viene scartata, rimuovila
-        if  bbox.size != 0:
-            bboxes[i, :] = bbox[0, :] 
-        else:
-            bboxes = np.delete(bboxes, i, axis = 0)
-            dropped_count += 1
-            
-        i += 1
-        
-    return bboxes
-
-
-
-
-# Utilizzata per il cropping
-def translate_bbox(bboxes, direction, scale, r, c):
-    
-    bboxes = np.asarray(bboxes)
-    bboxes = np.reshape(bboxes, [-1, 4])
-    
-    i = 0    
-    while i < np.shape(bboxes)[0]:
-        
-        if direction == 'ne':
-            translate_x = - int(c * scale)
-            translate_y = 0
-        elif direction == 'se':
-            translate_x = - int(c * scale)
-            translate_y = - int(r * scale)
-        elif direction == 'sw':
-            translate_x = 0
-            translate_y = - int(r * scale)
-        else:
-            print("\nERROR - The specified direction is invalid!")
-            sys.exit(0)
-            
-        bboxes[i, 0] += translate_x
-        bboxes[i, 1] += translate_y
-        bboxes[i, 2] += translate_x
-        bboxes[i, 3] += translate_y
-        
-        i += 1
-
-    bboxes = (np.reshape(bboxes, -1)).tolist()
-
-    return bboxes
-
-
-
-
 # "op" in ['gamma', 'brightness', 'saturation', 'hue'] 
 def jitter(img, op, gamma = 1, brightness = 0, saturation = 0, hue = 0):
     
@@ -509,8 +359,3 @@ def blur(img, blurring_factor = 75):
     if w % 2 == 0 : w += 1
     
     return cv.GaussianBlur(img, (h, w), 0)
-    
-    
-
-
-
