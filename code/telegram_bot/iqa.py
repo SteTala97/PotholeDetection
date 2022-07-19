@@ -55,28 +55,3 @@ def isVideoOk(video):
             break
     capture.release()
     return True
-
-
-# # Test on image
-# img_path = r'D:\UNIVERSITA\Magistrale\SecondoAnno\VisualInformationProcessingAndManagement\ProgettoVISUAL\data\validation_set'
-# img_path = img_path + '/img-658.jpg'
-# img = cv.imread(img_path)
-# cv.imshow('originale', img)
-# print(calculateImageScore(img))
-# print(isImageOk(img), "\n")
-# img = cv.GaussianBlur(img, (5, 5), 0)
-# # cv.imshow('dopo blurring', img)
-# # cv.waitKey()
-# # cv.destroyAllWindows()
-# print(calculateImageScore(img))
-# print(isImageOk(img), "\n")
-# img = cv.GaussianBlur(img, (25, 25), 0)
-# print(calculateImageScore(img))
-# print(isImageOk(img), "\n")
-
-## Test on video
-# video = r'D:\UNIVERSITA\Magistrale\SecondoAnno\VisualInformationProcessingAndManagement\ProgettoVISUAL\data\test_videos'
-# video = video + '/video2-pos.mov'
-# print(isVideoOk(video))
-
-
